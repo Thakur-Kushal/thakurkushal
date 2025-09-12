@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thakur Kushal | Animated Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #d1d5db;
+            cursor: none;
+        }
+        main, header {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .text-gradient {
+            background-image: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #6366f1;
+            border-radius: 50%;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
+            z-index: 9999;
+            opacity: 0;
+        }
+        body.ready #cursor {
+            opacity: 1;
+        }
+        #cursor.hover-grow {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .click-bobble {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+            border: 2px solid #ef4444;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            animation: fly-out 1.2s ease-out forwards;
+        }
+
+        @keyframes fly-out {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--end-x, -50%), var(--end-y, -50%)) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #111827;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        @keyframes bobble {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .animate-bobble {
+            animation: bobble 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="cursor"></div>
+    
+    <div id="preloader">
+        <h1 class="text-gradient font-bold text-4xl">Thakur Kushal</h1>
+    </div>
+
+    <header id="header" class="glass-effect fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Thakur Kushal</a>
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="#home" class="hover:text-sky-400 transition-colors">Home</a></li>
+                <li><a href="#about" class="hover:text-sky-400 transition-colors">About</a></li>
+                <li><a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a></li>
+                <li><a href="#prompts" class="hover:text-sky-400 transition-colors">Prompts</a></li>
+                <li><a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a></li>
+            </ul>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <ul class="flex flex-col items-center py-4">
+                <li class="w-full text-center"><a href="#home" class="block py-2 hover:bg-gray-700">Home</a></li>
+                <li class="w-full text-center"><a href="#about" class="block py-2 hover:bg-gray-700">About</a></li>
+                <li class="w-full text-center"><a href="#projects" class="block py-2 hover:bg-gray-700">Projects</a></li>
+                <li class="w-full text-center"><a href="#prompts" class="block py-2 hover:bg-gray-700">Prompts</a></li>
+                <li class="w-full text-center"><a href="#contact" class="block py-2 hover:bg-gray-700">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section id="home" class="min-h-screen flex items-center justify-center pt-24 md:pt-20">
+            <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="home-title text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+                        Namaste, Main Hoon <br> <span class="text-gradient">Thakur Kushal</span>
+                    </h1>
+                    <p class="home-subtitle mt-4 text-xl md:text-2xl text-gray-300">
+                        Main ek <span id="typed-text" class="font-semibold text-sky-400"></span> hoon.
+                    </p>
+                    <a href="#projects" class="home-button mt-12 inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors">
+                        Mere Kaam Dekhein
+                    </a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img id="home-img" src="https://placehold.co/400x400/1e2b3b/ffffff?text=Kushal" alt="Thakur Kushal ki Photo" class="rounded-full w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 shadow-lg border-4 border-gray-700 animate-bobble">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">About Me</h2>
+                <div class="max-w-3xl mx-auto text-center">
+                    <p class="about-text text-lg mb-4">Mera naam Thakur Kushal hai aur main ek passionate web developer hoon jise clean aur user-friendly websites banana pasand hai. Mujhe nayi technologies seekhne aur complex problems ko solve karne mein maza aata hai.</p>
+                    <p class="about-text text-lg mb-6">Jab main code nahi kar raha hota, tab mujhe chess khelna, naye music sunna aur Dosto ke sath ghumna pasand hai.</p>
+                    <h3 class="skills-title text-2xl font-semibold text-white mb-4 mt-10">Meri Skills</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">HTML5</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">CSS3 & Tailwind</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">JavaScript</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">React</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">Node.js</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">Figma</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">Kotlin</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">Cricket</span>
+                        <span class="skill-item bg-gray-700 text-sky-300 py-2 px-4 rounded-full">MMA Fighter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">Mere Projects</h2>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide glass-effect rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/1e293b/94a3b8?text=Project+1" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-2xl font-bold text-white mb-2">Portfolio Website</h3><p class="mb-4">Ek personal portfolio website...</p><a href="#" class="text-indigo-400 font-semibold hover:underline">Live Dekhein &rarr;</a></div></div>
+                        <div class="swiper-slide glass-effect rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/1e293b/94a3b8?text=Project+2" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-2xl font-bold text-white mb-2">E-commerce Site</h3><p class="mb-4">React.js ka use karke banayi gayi...</p><a href="#" class="text-indigo-400 font-semibold hover:underline">Live Dekhein &rarr;</a></div></div>
+                        <div class="swiper-slide glass-effect rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/1e293b/94a3b8?text=Project+3" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-2xl font-bold text-white mb-2">Weather App</h3><p class="mb-4">Ek simple weather app jo...</p><a href="#" class="text-indigo-400 font-semibold hover:underline">Live Dekhein &rarr;</a></div></div>
+                        <div class="swiper-slide glass-effect rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/1e293b/94a3b8?text=Project+4" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-2xl font-bold text-white mb-2">Task Manager</h3><p class="mb-4">Node.js aur Express se bani...</p><a href="#" class="text-indigo-400 font-semibold hover:underline">Live Dekhein &rarr;</a></div></div>
+                    </div>
+                    <div class="swiper-pagination mt-8 relative"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prompts" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-white">AI Image Prompts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="prompt-card glass-effect rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/1e2b3b/38bdf8?text=Futuristic+City" alt="Futuristic City" class="w-full h-56 object-contain bg-black/20">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <p class="prompt-text text-sm text-gray-300 mb-3 flex-grow">A sprawling futuristic city at night, neon lights reflecting on wet streets, flying vehicles, in the style of Blade Runner, cinematic, 8K, hyper-detailed.</p>
+                            <button class="copy-prompt-btn mt-auto bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors w-full">Copy Prompt</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card glass-effect rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/1e2b3b/f472b6?text=Magic+Forest" alt="Magic Forest" class="w-full h-56 object-contain bg-black/20">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <p class="prompt-text text-sm text-gray-300 mb-3 flex-grow">An enchanted forest with glowing mushrooms and sparkling streams, a mystical deer with crystal antlers stands in the center, fantasy, digital painting, by Artgerm and Greg Rutkowski.</p>
+                            <button class="copy-prompt-btn mt-auto bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors w-full">Copy Prompt</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card glass-effect rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/1e2b3b/facc15?text=Astronaut" alt="Astronaut" class="w-full h-56 object-contain bg-black/20">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <p class="prompt-text text-sm text-gray-300 mb-3 flex-grow">An astronaut floating in the vastness of space, touching a nebula of swirling colors, Earth visible in the distance, cosmic, awe-inspiring, hyperrealistic photography.</p>
+                            <button class="copy-prompt-btn mt-auto bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors w-full">Copy Prompt</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card glass-effect rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/1e2b3b/4ade80?text=Steampunk+Cat" alt="Steampunk Cat" class="w-full h-56 object-contain bg-black/20">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <p class="prompt-text text-sm text-gray-300 mb-3 flex-grow">A portrait of a sophisticated cat wearing a steampunk top hat and monocle, surrounded by gears and clockwork, detailed oil painting, vintage, intricate details.</p>
+                            <button class="copy-prompt-btn mt-auto bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors w-full">Copy Prompt</button>
+                        </div>
+                    </div>
+                    
+                    <div class="prompt-card glass-effect rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/1e2b3b/a78bfa?text=Underwater+Kingdom" alt="Underwater Kingdom" class="w-full h-56 object-contain bg-black/20">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <p class="prompt-text text-sm text-gray-300 mb-3 flex-grow">The lost city of Atlantis, a magnificent underwater kingdom with bioluminescent coral and majestic architecture, schools of exotic fish swimming by, fantasy art.</p>
+                            <button class="copy-prompt-btn mt-auto bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors w-full">Copy Prompt</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card glass-effect rounded-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/1e2b3b/fb923c?text=Desert+Oasis" alt="Desert Oasis" class="w-full h-56 object-contain bg-black/20">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <p class="prompt-text text-sm text-gray-300 mb-3 flex-grow">A hidden oasis in the middle of a vast desert at sunset, palm trees surrounding a crystal clear lake, vibrant orange and purple sky, landscape photography, National Geographic style.</p>
+                            <button class="copy-prompt-btn mt-auto bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors w-full">Copy Prompt</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title text-4xl font-bold text-white mb-4">Aapse Judna Chahta Hoon</h2>
+                <p class="contact-text text-lg mb-8 max-w-2xl mx-auto">Agar aapke paas koi project hai, koi sawaal hai, ya bas baat karna chahte hain, toh mujhe email karein. Main jald se jald jawaab doonga!</p>
+                
+                <a href="mailto:APNA-EMAIL-YAHA-DAALEIN" class="contact-email text-2xl text-gradient font-semibold">APNA-EMAIL-YAHA-DAALEIN</a>
+                
+                <div class="mt-12 flex justify-center space-x-8 contact-socials">
+                    <a href="#" class="text-4xl text-gray-300 hover:text-sky-400 transform hover:scale-125 transition-transform duration-300"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-4xl text-gray-300 hover:text-sky-400 transform hover:scale-125 transition-transform duration-300"><i class="fa-brands fa-youtube"></i></a>
+                    
+                    <a href="mailto:APNA-EMAIL-YAHA-DAALEIN" class="text-4xl text-gray-300 hover:text-sky-400 transform hover:scale-125 transition-transform duration-300"><i class="fa-solid fa-envelope"></i></a>
+                    
+                    <a href="#" class="text-4xl text-gray-300 hover:text-sky-400 transform hover:scale-125 transition-transform duration-300"><i class="fa-solid fa-chess-knight"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Thakur Kushal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        window.addEventListener('load', () => {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            setupClickEffect();
+            setupCopyPrompt();
+
+            try {
+                initPageAnimations();
+            } catch (error) {
+                console.error("Animations shuru karne mein error aaya:", error);
+                document.getElementById('preloader').style.display = 'none';
+                document.querySelector('main').style.opacity = 1;
+                document.querySelector('main').style.visibility = 'visible';
+                document.querySelector('header').style.opacity = 1;
+                document.querySelector('header').style.visibility = 'visible';
+                document.body.style.cursor = 'default';
+            }
+        });
+
+        function setupClickEffect() {
+            document.addEventListener('click', (e) => {
+                for (let i = 0; i < 15; i++) {
+                    const bobble = document.createElement('div');
+                    bobble.className = 'click-bobble';
+                    document.body.appendChild(bobble);
+
+                    const randomX = (Math.random() - 0.5) * 300;
+                    const randomY = (Math.random() - 0.5) * 300;
+
+                    bobble.style.left = `${e.clientX}px`;
+                    bobble.style.top = `${e.clientY}px`;
+                    bobble.style.setProperty('--end-x', `${randomX}px`);
+                    bobble.style.setProperty('--end-y', `${randomY}px`);
+
+                    setTi
